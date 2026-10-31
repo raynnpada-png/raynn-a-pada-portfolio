@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Raynn A. Pada | Virtual Assistant Portfolio</title>
+<style>
+:root {
+  --site-primary: #173b5e;
+  --site-on-primary: #ffffff;
+  --site-secondary: #e9f0f6;
+  --site-on-secondary: #18324a;
+  --site-background: #f6f8fb;
+  --site-on-background: #172536;
+  --site-font-body: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --site-font-heading: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --site-heading-scale: 1;
+  --site-spacing-scale: 1;
+  --site-radius-scale: 1;
+  --site-decoration-opacity: 1;
+  color-scheme: light dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; font-family: var(--site-font-body); background: var(--site-background); color: var(--site-on-background); }
+#app { min-height: 100vh; width: 100%; background-color: var(--site-background); color: var(--site-on-background); border-radius: 0; }
+a { color: inherit; }
+.container { width: min(1100px, calc(100% - 40px)); margin: 0 auto; }
+.topbar { background: var(--site-primary); color: var(--site-on-primary); }
+.nav { min-height: 72px; display:flex; align-items:center; justify-content:space-between; gap:20px; }
+.brand { font-weight:800; letter-spacing:.04em; }
+.brand span { color:#f2c14e; }
+.navlinks { display:flex; gap:22px; flex-wrap:wrap; font-size:13px; }
+.navlinks a { text-decoration:none; opacity:.92; }
+.navlinks a:hover { text-decoration:underline; }
+.hero { background:var(--site-primary); color:var(--site-on-primary); padding: calc(76px * var(--site-spacing-scale)) 0 calc(84px * var(--site-spacing-scale)); position:relative; overflow:hidden; }
+.hero:after { content:""; position:absolute; width:430px; height:430px; border:1px solid rgba(255,255,255,.13); border-radius:50%; right:-120px; top:-180px; box-shadow:0 0 0 55px rgba(255,255,255,.035),0 0 0 110px rgba(255,255,255,.025); opacity:var(--site-decoration-opacity); pointer-events:none; }
+.eyebrow { text-transform:uppercase; letter-spacing:.17em; font-size:12px; font-weight:750; color:#f2c14e; }
+h1,h2,h3 { font-family:var(--site-font-heading); line-height:1.12; }
+h1 { font-size:calc(clamp(42px,7vw,70px) * var(--site-heading-scale)); max-width:760px; margin:18px 0; letter-spacing:-.045em; }
+.hero p { color:#e1e9f1; font-size:18px; line-height:1.7; max-width:690px; margin:0; }
+.hero-actions { display:flex; gap:12px; margin-top:30px; flex-wrap:wrap; }
+.btn { display:inline-flex; align-items:center; justify-content:center; padding:13px 19px; border-radius:calc(10px * var(--site-radius-scale)); font-weight:750; font-size:14px; text-decoration:none; border:1px solid transparent; }
+.btn-gold { background:#f2c14e; color:#1c2a38; }
+.btn-outline { border-color:rgba(255,255,255,.45); color:white; }
+.section { padding: calc(70px * var(--site-spacing-scale)) 0; }
+.section.alt { background:var(--site-secondary); color:var(--site-on-secondary); }
+.section-head { margin-bottom:30px; max-width:700px; }
+.section-head .eyebrow { color:#a87913; }
+h2 { font-size:calc(clamp(28px,4vw,40px) * var(--site-heading-scale)); margin:10px 0 12px; letter-spacing:-.03em; }
+.lead { font-size:16px; line-height:1.75; opacity:.82; margin:0; }
+.grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+.card { background:light-dark(#ffffff,#202c38); color:light-dark(#172536,#edf3f8); border:1px solid light-dark(#e1e7ed,#344454); border-radius:calc(16px * var(--site-radius-scale)); padding:24px; box-shadow:0 8px 24px rgba(20,40,60,.045); }
+.card h3 { margin:0 0 10px; font-size:18px; }
+.card p,.card li { line-height:1.65; font-size:14px; }
+.card p { margin:0; opacity:.82; }
+.icon { width:38px; height:38px; display:grid; place-items:center; border-radius:11px; background:var(--site-secondary); color:var(--site-on-secondary); margin-bottom:18px; font-size:18px; }
+.two-col { display:grid; grid-template-columns:1.15fr .85fr; gap:28px; align-items:start; }
+.checklist { list-style:none; padding:0; margin:14px 0 0; display:grid; gap:11px; }
+.checklist li { padding-left:25px; position:relative; line-height:1.55; font-size:14px; }
+.checklist li:before { content:"✓"; position:absolute; left:0; color:#a87913; font-weight:900; }
+.pillrow { display:flex; flex-wrap:wrap; gap:9px; margin-top:16px; }
+.pill { background:var(--site-secondary); color:var(--site-on-secondary); padding:9px 12px; border-radius:999px; font-size:12px; font-weight:700; }
+.timeline { display:grid; gap:18px; }
+.job { border-left:3px solid #d9a72e; padding:4px 0 5px 20px; }
+.job h3 { margin:0 0 5px; font-size:19px; }
+.job .meta { font-size:13px; font-weight:700; opacity:.65; margin-bottom:10px; }
+.job p { font-size:14px; line-height:1.7; margin:0; opacity:.83; }
+.note { background:var(--site-primary); color:var(--site-on-primary); border-radius:calc(18px * var(--site-radius-scale)); padding:30px; }
+.note p { color:#e4edf5; line-height:1.7; }
+.contact { background:var(--site-primary); color:var(--site-on-primary); padding:64px 0; }
+.contact h2 { max-width:650px; }
+.contact p { color:#e1e9f1; line-height:1.7; }
+.contact-links { display:flex; flex-wrap:wrap; gap:12px; margin-top:22px; }
+.contact-links a { color:#1c2a38; background:#f2c14e; text-decoration:none; font-weight:800; padding:12px 16px; border-radius:10px; font-size:14px; }
+footer { background:#102b44; color:#cbd7e2; padding:22px 0; font-size:12px; }
+.smallprint { font-size:12px; opacity:.65; line-height:1.6; }
+.portfolio-intro { display:flex; justify-content:space-between; align-items:end; gap:24px; margin-bottom:30px; }
+.portfolio-kicker { color:#a87913; text-transform:uppercase; letter-spacing:.17em; font-size:12px; font-weight:800; }
+.showcase-grid { display:grid; grid-template-columns:1.2fr .8fr; gap:20px; }
+.showcase-card { overflow:hidden; border:1px solid #dce4ec; border-radius:18px; background:#fff; box-shadow:0 12px 32px rgba(20,40,60,.07); }
+.showcase-card.dark { background:#173b5e; color:#fff; border-color:#173b5e; }
+.showcase-art { min-height:210px; padding:24px; display:flex; flex-direction:column; justify-content:space-between; background:linear-gradient(135deg,#eaf0f5,#d7e2ec); color:#173b5e; }
+.showcase-card.dark .showcase-art { background:linear-gradient(135deg,#244d70,#102b44); color:#fff; }
+.art-label { font-size:10px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; opacity:.72; }
+.art-title { font-size:clamp(24px,4vw,38px); line-height:1.02; font-weight:850; letter-spacing:-.04em; max-width:440px; }
+.art-line { height:5px; width:64px; background:#f2c14e; border-radius:9px; }
+.mini-board { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:18px; }
+.mini-board span { display:block; padding:12px 8px; border-radius:9px; background:rgba(255,255,255,.14); font-size:10px; font-weight:750; }
+.showcase-copy { padding:22px 24px 24px; }
+.showcase-copy h3 { font-size:19px; margin:0 0 8px; }
+.showcase-copy p { font-size:14px; line-height:1.7; opacity:.78; margin:0; }
+.deliverables { display:flex; flex-wrap:wrap; gap:7px; margin-top:14px; }
+.deliverables span { font-size:11px; font-weight:750; padding:7px 10px; border-radius:999px; background:#edf2f6; color:#24435e; }
+.proof-strip { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:20px; }
+.proof-item { padding:18px; border-radius:14px; background:#f0f4f7; }
+.proof-item strong { display:block; color:#173b5e; font-size:15px; margin-bottom:5px; }
+.proof-item span { font-size:12px; line-height:1.55; opacity:.75; }
+@media (max-width:800px) { .showcase-grid { grid-template-columns:1fr; } .portfolio-intro { display:block; } }
+@media (max-width:540px) { .proof-strip { grid-template-columns:1fr; } }
+@media (max-width:800px) { .grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .two-col { grid-template-columns:1fr; } .nav { padding:16px 0; align-items:flex-start; flex-direction:column; } }
+@media (max-width:540px) { .container { width:min(100% - 30px,1100px); } .grid { grid-template-columns:1fr; } .hero { padding:58px 0; } .section { padding:52px 0; } .navlinks { gap:14px; } }
+@media (prefers-color-scheme: dark) { .section.alt { background:#172635; color:#edf3f8; } .pill { background:#2a3c4d; color:#edf3f8; } .icon { background:#2a3c4d; color:#edf3f8; } }
+</style>
+</head>
+<body>
+<div id="app" data-sites-preview-theme="custom">
+  <header class="topbar">
+    <div class="container nav">
+      <div class="brand">RAYNN <span>A. PADA</span></div>
+      <nav class="navlinks" aria-label="Main navigation">
+        <a href="#about">About</a><a href="#services">Services</a><a href="#work">Portfolio</a><a href="#experience">Experience</a><a href="#tools">Tools</a><a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="eyebrow">Virtual Assistant · Customer Support · Sales Operations</div>
+        <h1>Reliable remote support that keeps your business moving.</h1>
+        <p>I'm Raynn Pada, an experienced virtual support professional helping Australian and US businesses with customer service, lead generation, CRM administration, property research and day-to-day operations.</p>
+        <div class="hero-actions"><a class="btn btn-gold" href="#contact">Let's work together</a><a class="btn btn-outline" href="#experience">View my experience</a></div>
+      </div>
+    </section>
+    <section class="section" id="about">
+      <div class="container two-col">
+        <div>
+          <div class="section-head"><div class="eyebrow">A little about me</div><h2>Practical support. Clear communication. Careful work.</h2></div>
+          <p class="lead">I bring over four years of experience supporting international clients across real estate, sales operations and customer service. My work combines accurate data handling with a people-first approach: I can manage detailed back-office tasks while communicating professionally with customers, prospects and team members.</p>
+          <p class="lead" style="margin-top:16px">I work well independently, take ownership of assigned tasks and value clear processes, constructive feedback and consistent follow-through.</p>
+        </div>
+        <aside class="note">
+          <div class="eyebrow">What you can expect</div>
+          <h3 style="font-size:24px;margin:12px 0">A dependable extension of your team.</h3>
+          <p>Organised task management, a detail-focused approach, confident customer communication and a willingness to learn the systems your business uses.</p>
+          <ul class="checklist"><li>Remote-work experience with international clients</li><li>Customer-focused phone and written communication</li><li>CRM updates, research and data quality checks</li><li>Adaptable across changing priorities</li></ul>
+        </aside>
+      </div>
+    </section>
+    <section class="section alt" id="services">
+      <div class="container">
+        <div class="section-head"><div class="eyebrow">How I can help</div><h2>Virtual assistance services</h2><p class="lead">Flexible operational and customer-facing support, tailored to your workflow.</p></div>
+        <div class="grid">
+          <article class="card"><div class="icon">✆</div><h3>Customer Support</h3><p>Inbound and outbound calls, email enquiries, customer follow-ups, issue handling and professional client communication.</p></article>
+          <article class="card"><div class="icon">◎</div><h3>Lead Generation & Sales</h3><p>Prospecting, cold calling, lead qualification, appointment setting, follow-up and maintaining accurate lead records.</p></article>
+          <article class="card"><div class="icon">⌂</div><h3>Real Estate Administration</h3><p>Property and ownership research, buyer and seller follow-ups, listing support, open-home attendee contact and market information tasks.</p></article>
+          <article class="card"><div class="icon">▤</div><h3>CRM & Data Management</h3><p>Contact management, data entry, record updates, quality assurance, database clean-up and reporting support.</p></article>
+          <article class="card"><div class="icon">✉</div><h3>Admin & Inbox Support</h3><p>Email handling, document organisation, data entry, spreadsheet updates, task coordination and routine administration.</p></article>
+          <article class="card"><div class="icon">↗</div><h3>Research & Reporting</h3><p>Online research, information verification, prospect lists, data gathering and clear operational reports.</p></article>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="work">
+      <div class="container">
+        <div class="portfolio-intro"><div class="section-head"><div class="portfolio-kicker">Portfolio highlights</div><h2>How I support the work behind the scenes.</h2><p class="lead">A visual overview of the workflows I can manage, from first enquiry to organised follow-up. These are representative capability samples, not client-confidential work.</p></div><div class="smallprint">Selected workflow examples</div></div>
+        <div class="showcase-grid">
+          <article class="showcase-card dark"><div class="showcase-art"><div class="art-label">01 / Real estate support workflow</div><div><div class="art-title">From enquiry to organised follow-up.</div><div class="art-line"></div><div class="mini-board"><span>NEW LEAD</span><span>CRM UPDATE</span><span>FOLLOW-UP</span></div></div></div><div class="showcase-copy"><h3>Buyer enquiry & CRM coordination</h3><p>Capture enquiry details, update contact records, note buyer requirements and keep the next action clear for the sales team.</p><div class="deliverables"><span>VaultRE-style notes</span><span>Lead tracking</span><span>Buyer follow-up</span></div></div></article>
+          <article class="showcase-card"><div class="showcase-art"><div class="art-label">02 / Data & prospecting</div><div class="art-title">Clean data. Clear next steps.</div><div class="art-line"></div></div><div class="showcase-copy"><h3>Research & lead preparation</h3><p>Research ownership and property information, check details, organise prospect records and prepare accurate lists for outreach.</p><div class="deliverables"><span>Data research</span><span>Quality checks</span><span>Prospect lists</span></div></div></article>
+          <article class="showcase-card"><div class="showcase-art"><div class="art-label">03 / Customer experience</div><div class="art-title">Every conversation, handled with care.</div><div class="art-line"></div></div><div class="showcase-copy"><h3>Customer communication & appointment setting</h3><p>Handle inbound and outbound conversations, qualify enquiries, arrange appointments and record clear outcomes for the team.</p><div class="deliverables"><span>Phone support</span><span>Appointment setting</span><span>Call outcomes</span></div></div></article>
+        </div>
+        <div class="proof-strip"><div class="proof-item"><strong>People-first communication</strong><span>Professional, approachable support across calls, email and follow-ups.</span></div><div class="proof-item"><strong>Accurate administration</strong><span>Structured records, careful research and consistent data handling.</span></div><div class="proof-item"><strong>Reliable remote delivery</strong><span>Independent task ownership with clear updates and follow-through.</span></div></div>
+      </div>
+    </section>
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="section-head"><div class="eyebrow">Professional background</div><h2>Experience that supports the details and the people.</h2><p class="lead">Selected roles and responsibilities across real estate, data operations and customer service.</p></div>
+        <div class="timeline">
+          <article class="job"><h3>Data Specialist / Data Mining & Prospecting Specialist — Wingman Group</h3><div class="meta">September 2023 – May 2026</div><p>Supported property-sector data operations through ownership research, prospecting, CRM management, data quality checks, lead generation, reporting and marketing-team support. Worked with property data and CRM platforms including ID4Me, HubSpot, PriceFinder, RP Data and Nymlist.</p></article>
+          <article class="job"><h3>Agent Services / Sales Support — VA4U / RE/MAX AU</h3><div class="meta">January 2024 – January 2025 · Dates as supplied</div><p>Assisted real estate agents with ownership data mining, VaultRE contact and note updates, anniversary reports, Realtair market updates and reports, ActivePipe newsletters, Canva listing tiles, social content and prospecting support. Tools included Agentbox, Trello, Google Sheets, Microsoft Office, Salesforce, Zoho and Zendesk.</p></article>
+          <article class="job"><h3>Customer Service & Sales Support — Previous roles</h3><div class="meta">Sophi Inc. · Spectrio LLC · Qualfon Philippines Inc. · Western Union</div><p>Earlier experience across customer service, customer communication and sales-related support. This background strengthened my ability to listen, explain information clearly, handle enquiries and work toward service expectations.</p></article>
+        </div>
+        <p class="smallprint" style="margin-top:22px">Employment dates and role descriptions are based on the information provided and can be refined before sharing with prospective clients.</p>
+      </div>
+    </section>
+    <section class="section alt" id="skills">
+      <div class="container two-col">
+        <div>
+          <div class="section-head"><div class="eyebrow">Core strengths</div><h2>Skills I bring to the role</h2></div>
+          <ul class="checklist"><li>Customer service and relationship building</li><li>Inbound and outbound calling</li><li>Cold calling and appointment setting</li><li>Lead research, prospecting and qualification</li><li>CRM administration and data accuracy</li><li>Written communication and email management</li><li>Time management and independent task ownership</li><li>Adaptability and willingness to learn</li></ul>
+        </div>
+        <div id="tools">
+          <div class="section-head"><div class="eyebrow">Systems & platforms</div><h2>Tools I've worked with</h2><p class="lead">Experience across CRM, property research, communication, productivity and marketing tools.</p></div>
+          <div class="pillrow"><span class="pill">HubSpot</span><span class="pill">VaultRE</span><span class="pill">Agentbox</span><span class="pill">Salesforce</span><span class="pill">Zoho</span><span class="pill">Zendesk</span><span class="pill">PriceFinder</span><span class="pill">RP Data</span><span class="pill">ID4Me</span><span class="pill">Nymlist</span><span class="pill">Realtair</span><span class="pill">ActivePipe</span><span class="pill">Canva</span><span class="pill">Trello</span><span class="pill">Google Workspace</span><span class="pill">Microsoft Office</span></div>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div class="section-head"><div class="eyebrow">Working style</div><h2>Professional, approachable and accountable.</h2></div>
+        <div class="grid">
+          <article class="card"><h3>Detail-focused</h3><p>I take care with records, research and follow-ups, and understand how accurate information supports good decisions.</p></article>
+          <article class="card"><h3>Self-motivated</h3><p>I'm comfortable working remotely, managing priorities and progressing tasks independently while keeping the team informed.</p></article>
+          <article class="card"><h3>Open to feedback</h3><p>I learn new tools and processes quickly and use constructive feedback to improve the quality of my work.</p></article>
+        </div>
+      </div>
+    </section>
+    <section class="contact" id="contact">
+      <div class="container">
+        <div class="eyebrow">Get in touch</div>
+        <h2>Looking for reliable remote support?</h2>
+        <p>I'd be happy to discuss how my experience can support your team and day-to-day operations.</p>
+        <div class="contact-links"><a href="mailto:raynnpada@gmail.com">Email Raynn</a></div>
+        <p class="smallprint">Based in Dumaguete City, Negros Oriental, Philippines · Available for remote opportunities</p>
+      </div>
+    </section>
+  </main>
+  <footer><div class="container">© 2026 Raynn A. Pada · Virtual Assistant & Remote Support Portfolio</div></footer>
+</div>
+</body>
+</html>
